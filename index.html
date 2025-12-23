@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>GlobalTimeTrack</title>
+    <link rel="stylesheet" href="./style.css">
+
+  </head>
+    
+  <body>
+  <link rel="stylesheet" href="style.css" />
+
+  <main class="app-shell">
+    <div class="app-inner">
+      <header>
+        <div class="title-block">
+          <div class="title-icon">⏱️</div>
+          <div>
+            <h1>World Time Converter</h1>
+            <p class="subtitle">
+              Put the time you know, then choose up to three countries & cities to see what day and time it is there.
+            </p>
+          </div>
+        </div>
+        <div class="badge">
+          <span class="badge-dot"></span>
+          Live in your browser
+        </div>
+      </header>
+
+      <section class="layout">
+        <!-- LEFT: INPUT -->
+        <section class="panel panel-left">
+          <div class="panel-title">
+            <strong>Step 1:</strong> Time you know (your current time or any time)
+          </div>
+
+          <form id="timeForm" novalidate>
+            <!-- Source date & time -->
+            <div>
+              <label for="sourceDate">Date you know</label>
+              <input id="sourceDate" type="date" required />
+            </div>
+
+            <div>
+              <label for="sourceTime">Time you know</label>
+              <input id="sourceTime" type="time" required />
+            </div>
+
+            <!-- Source country & city -->
+            <div>
+              <label for="sourceCountry">Source country (where this time is)</label>
+              <select id="sourceCountry" required></select>
+            </div>
+
+            <div>
+              <label for="sourceCity">Source city</label>
+              <select id="sourceCity" required></select>
+              <button type="button" class="small-button" id="useNowButton">
+                Use my current time & location
+              </button>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="full-row" style="margin-top:0.4rem;">
+              <div class="panel-title">
+                <strong>Step 2:</strong> Countries & cities you want to see
+                <span class="panel-subtitle">
+                  Location 1 is required. Locations 2 and 3 are optional.
+                </span>
+              </div>
+            </div>
+
+            <!-- Target Location 1 (required) -->
+            <div class="full-row target-group">
+              <div class="target-group-header">Location 1 (required)</div>
+              <div class="target-grid">
+                <div>
+                  <label for="targetCountry1">Target country 1</label>
+                  <select id="targetCountry1" required></select>
+                </div>
+                <div>
+                  <label for="targetCity1">Target city 1</label>
+                  <select id="targetCity1" required></select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Target Location 2 (optional) -->
+            <div class="full-row target-group">
+              <div class="target-group-header">Location 2 (optional)</div>
+              <div class="target-grid">
+                <div>
+                  <label for="targetCountry2">Target country 2</label>
+                  <select id="targetCountry2"></select>
+                </div>
+                <div>
+                  <label for="targetCity2">Target city 2</label>
+                  <select id="targetCity2" disabled></select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Target Location 3 (optional) -->
+            <div class="full-row target-group">
+              <div class="target-group-header">Location 3 (optional)</div>
+              <div class="target-grid">
+                <div>
+                  <label for="targetCountry3">Target country 3</label>
+                  <select id="targetCountry3"></select>
+                </div>
+                <div>
+                  <label for="targetCity3">Target city 3</label>
+                  <select id="targetCity3" disabled></select>
+                </div>
+              </div>
+            </div>
+
+            <div class="full-row">
+              <button type="submit">
+                <span class="icon">🌍</span>
+                <span>Convert to selected locations</span>
+              </button>
+              <div class="helper-text">
+                Result will show the <strong>day</strong>, <strong>time (12-hour)</strong>, and <strong>date</strong> in each selected city.
+              </div>
+            </div>
+          </form>
+
+          <div id="errorBox" class="error-card" aria-live="polite">
+            <div class="error-title">Something went wrong</div>
+            <div id="errorMessage"></div>
+          </div>
+        </section>
+
+        <!-- RIGHT: RESULT -->
+        <section class="panel panel-right">
+          <div class="panel-title">
+            <strong>Step 3:</strong> See the local day & time there
+          </div>
+
+          <div class="from-to-chip">
+            Time you know → Local times in the locations you picked
+          </div>
+
+          <div id="resultCard" class="result-card" aria-live="polite">
+            <!-- Filled by JS -->
+          </div>
+
+          <div class="footer-note">
+            Change anything on the left and click <strong>Convert</strong> again to recalculate.
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <!-- Luxon (timezone library) + app logic -->
+  <script src="https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js"></script>
+  <script src="app.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/react/19.1.1/cjs/react.production.min.js'></script><script  src="./script.js"></script>
+
+  </body>
+  
+</html>
